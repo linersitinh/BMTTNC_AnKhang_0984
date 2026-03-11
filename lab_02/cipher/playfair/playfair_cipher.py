@@ -102,3 +102,26 @@ def decrypt(cipher,key):
             result+=matrix[r2][c1]
 
     return result
+def create_matrix(key):
+    key = key.upper().replace("J", "I")
+    alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
+
+    matrix = []
+    used = set()
+
+    # thêm key vào trước
+    for c in key:
+        if c.isalpha() and c not in used:
+            matrix.append(c)
+            used.add(c)
+
+    # thêm alphabet còn lại
+    for c in alphabet:
+        if c not in used:
+            matrix.append(c)
+            used.add(c)
+
+    # chia thành ma trận 5x5
+    matrix_5x5 = [matrix[i:i+5] for i in range(0, 25, 5)]
+
+    return matrix_5x5
